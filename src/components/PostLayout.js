@@ -11,6 +11,8 @@ import OpenGraphMeta from "./meta/OpenGraphMeta";
 import TwitterCardMeta from "./meta/TwitterCardMeta";
 import { SocialList } from "./SocialList";
 import TagButton from "./TagButton";
+import Like from './Like'
+
 //import { getAuthor } from "../lib/authors";
 // import { getTag } from "../lib/tags";
 
@@ -22,14 +24,15 @@ export default function PostLayout({
   author,
   tags,
   description = "",
+  headers,
   children,
 }) {
   // const keywords = tags.map(it => getTag(it).name);
   const authorName = "BOtis"
   let keywords = ['1']
-  let SideBard = <ContentTable/>
+
   return (
-    <Layout sidebar={SideBard}>
+    <Layout>
       <BasicMeta
         url={`/posts/${slug}`}
         title={title}
@@ -62,42 +65,69 @@ export default function PostLayout({
               <div>
                 <Date date={date} />
               </div>
+              <hr/>
               <div>
-                <Author author={"dad"} />
+              <ul className={"tag-list"}>
+            {tags.map((it, i) => (
+              <li key={i}>
+                <TagButton tag={it} />
+              </li>
+            ))}
+          </ul>
               </div>
             </div>
           </header>
           <div className={styles.content}>{children}</div>
-          {/* <ul className={"tag-list"}>
-            {tags.map((it, i) => (
-              <li key={i}>
-                <TagButton tag={getTag(it)} />
-              </li>
-            ))}
-          </ul> */}
         </article>
         <footer>
           <div className={"social-list"}>
+                    <div className="liked">
+          <Like slug={slug}/>
+          </div>
             <SocialList />
           </div>
           <Copyright />
         </footer>
       </div>
-{/* 
-      <ContentTable/> */}
 
+      <div className="content_table">
+      <ContentTable slug={slug} headers={headers}/>
+      </div>
       <style jsx>
         {`
             .container {
               display: block;
               max-width: 50rem;
               width: 100%;
-              margin-left: 20%;
-              margin-right: 5%;
+              margin: 0 auto;
               padding: 0 1.5rem;
               box-sizing: border-box;
               z-index: 0;
             }
+            
+            .content_table {
+              display: none;
+             }
+
+            @media (min-width: 1270px) { 
+              .content_table {
+                display: block;
+              }
+
+              .liked {
+                display: none;
+              }
+            }
+            
+            @media (min-width: 769px) {
+              .container {
+                display: flex;
+                flex-direction: column;
+                margin-left: 20%;
+                margin-right: 2%;
+              }
+            }
+
             .metadata div {
               display: inline-block;
               margin-right: 0.5rem;
@@ -120,16 +150,11 @@ export default function PostLayout({
               margin-left: 0.5rem;
             }
             .social-list {
-              margin-top: 3rem;
               text-align: center;
             }
-
-            @media (min-width: 769px) {
-              .container {
-                display: flex;
-                flex-direction: column;
-              }
-            }
+            
+            
+        
 
           `}
       </style>

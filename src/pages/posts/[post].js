@@ -1,3 +1,4 @@
+import React from 'react'
 import { parseISO } from 'date-fns';
 import PostLayout from "../../components/PostLayout";
 
@@ -22,8 +23,17 @@ export default function Post({
   author,
   description = "",
   source,
+  headers,
+  NotFound
 }) {
+
+  if (NotFound){
+    return (
+      <div>Not found</div>
+    )
+  }
   return (
+
 
     <PostLayout
       title={title}
@@ -32,6 +42,7 @@ export default function Post({
       tags={tags}
       author={author}
       description={description}
+      headers={headers}
     >
             <MDXRemote {...source} components={components} />
     </PostLayout>
@@ -40,39 +51,49 @@ export default function Post({
 }
 
 export async function getStaticPaths () {
-  // const paths = fetchPostContent().map(it => "/posts/" + it.slug);
 
   const posts = (await axios.get(`http://localhost:8000/api/post/`)).data
-  const paths = posts.map((post) => ({
+  const paths = posts.results.map((post) => ({
     params: { post: post.slug },
   }))
   return {
     paths,
-    fallback: false,
+    fallback: 'blocking',
   };
 };
 
 export async function getStaticProps ({ params }) {
   const slug = params.post;
-  const post = (await axios.get(`http://localhost:8000/api/post/${slug}/`)).data
-  const { content, data } = matter(post.content2)
-  const mdxSource = await serialize(content, 
-    { scope: data,
-      mdxOptions: {
-        remarkPlugins: [[a11yEmoji, {}], [emoji, {}]],
+  try {
+    let post = (await axios.get(`http://localhost:8000/api/post/${slug}/`)).data
+    const { content, data } = matter(post.content)
+    const mdxSource = await serialize(content, 
+      { scope: data,
+        mdxOptions: {
+          remarkPlugins: [[a11yEmoji, {}], [emoji, {}]],
+        },
+    })
+    return {
+      props: {
+        title: post.title,
+        dateString: post.created,
+        slug: post.slug,
+        description: "",
+        tags: post.tags,
+        source: mdxSource,
+        headers: post.headers,
+        NotFound: false,
       },
-  
-  })
+      revalidate: 60*60
+    };
+  }
+  catch (err) {
+    return {
+      props: {
+        NotFound: true,
+      },
+    }
+  }
 
-  return {
-    props: {
-      title: post.title,
-      dateString: post.created,
-      slug: post.slug,
-      description: "",
-      tags: post.tags,
-      source: mdxSource
-    },
-  };
 };
 

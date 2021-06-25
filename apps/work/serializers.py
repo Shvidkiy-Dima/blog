@@ -6,7 +6,7 @@ class WorkListSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = models.Work
-        fields = ('title', 'preview', 'slug', 'id', 'link')
+        fields = ('title', 'preview', 'slug', 'id', 'link', 'git_link', 'description')
 
 
 class WorkDetailSerializer(serializers.ModelSerializer):

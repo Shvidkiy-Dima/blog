@@ -3,6 +3,7 @@ from work import models, serializers
 
 
 class WorkListView(ListAPIView):
+    pagination_class = None
     queryset = models.Work.objects.active()
     serializer_class = serializers.WorkListSerializer
 

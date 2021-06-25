@@ -1,6 +1,7 @@
 import React from "react";
 import Twitter from "../assets/twitter-alt.svg";
 import GitHub from "../assets/github-alt.svg";
+import Telegram from "../assets/telegram.svg";
 import config from "../configs/main";
 
 export function SocialList({}) {
@@ -22,6 +23,17 @@ export function SocialList({}) {
       >
         <GitHub width={24} height={24} fill={"#222"} />
       </a>
+
+      <a
+        title="Telegram"
+        href={`https://t.me/${config.telegram_account}`}
+        target="_blank"
+        rel="noopener"
+      >
+        <Telegram width={24} height={24} fill={"#222"} />
+      </a>
+
+
       <style jsx>{`
         a {
           display: inline-block;

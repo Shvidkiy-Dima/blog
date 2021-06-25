@@ -2,6 +2,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import Burger from "./Burger";
 import { useState } from "react";
+import {HiCurrencyDollar} from 'react-icons/hi'
 
 export default function Navigation() {
   const router = useRouter();
@@ -46,10 +47,24 @@ export default function Navigation() {
                   router.pathname.startsWith("/contacts") ? "active" : null
                 }
               >
-                Say hello
+                Contacts
               </a>
             </Link>
           </li>
+
+          <li >
+            <Link href="/donate">
+              <a
+                className={
+                  router.pathname.startsWith("/donate") ? "active" : null
+                }
+              >
+                Donate
+                <HiCurrencyDollar/>
+              </a>
+            </Link>
+          </li>
+
         </ul>
         <style jsx>
           {`

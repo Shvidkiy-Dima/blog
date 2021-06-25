@@ -84,6 +84,7 @@ def markdown_uploader(request):
 api_urls = [
     path('post/', include('post.urls')),
     path('work/', include('work.urls')),
+    path('snippet/', include('snippets.urls')),
     path('uploader/', markdown_uploader, name='markdown_uploader_page')
 ]
 

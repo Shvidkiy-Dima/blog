@@ -1,26 +1,27 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-import Burger from "./Burger";
-import { useState } from "react";
+import Like from './Like'
 
-export default function Navigation() {
-  const router = useRouter();
-  const [active, setActive] = useState(false);
+export default function ContentTable({slug, headers}) {
   return (
-    <nav style={{marginRight: '10%'}}>
-      <Burger active={active} onClick={() => setActive(!active)} />
-      <div className={"container " + (active ? "active" : "")}>
+
+      <div className={"container"}>
 
         <ul>
-          <li>
-            <Link href="/">
-              <a className={router.pathname === "/" ? "active" : null}>About</a>
-            </Link>
-          </li>
+          {headers.map((h, i)=>{
+            return (
+              <li>
+              <Link href={`#${h.anchor}`}>
+                <a>{h.title}</a>
+              </Link>
+            </li>
+  
+            )
+          })}
 
         <li>
 
-            <img src="/media/1*RxC1JdtEhAetsXXPE94WYA.png" style={{maxHeight: '50px'}} />
+            <Like slug={slug}/>
         </li>
 
 
@@ -36,7 +37,7 @@ export default function Navigation() {
               opacity: 0;
               width: 100%;
               height: 100vh;
-              text-align: right;
+              text-align: center;
               list-style: none;
               margin: 0;
               padding: 0;
@@ -45,7 +46,7 @@ export default function Navigation() {
               background-color: #fff;
               display: flex;
               flex-direction: column;
-              justify-content: center;
+              justify-content: flex-start;
               z-index: 1;
               transform: translateY(100%);
               transition: opacity 200ms;
@@ -68,13 +69,13 @@ export default function Navigation() {
 
             @media (min-width: 769px) {
               .container {
-                width: 7rem;
+                width: 3rem;
                 display: block;
                 padding-right: 10%;
               }
               ul {
                 opacity: 1;
-                width: 7rem;
+                width: 8rem;
                 top: auto;
                 display: block;
                 transform: translateY(0);
@@ -87,6 +88,6 @@ export default function Navigation() {
           `}
         </style>
       </div>
-    </nav>
+ 
   );
 }

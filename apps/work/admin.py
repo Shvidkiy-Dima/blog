@@ -1,3 +1,7 @@
 from django.contrib import admin
+from work.models import Work
 
-# Register your models here.
+
+@admin.register(Work)
+class WorkAdmin(admin.ModelAdmin):
+    list_display = ('title', )

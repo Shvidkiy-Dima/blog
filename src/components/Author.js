@@ -1,7 +1,7 @@
 export default function Author({ author }) {
   return (
     <>
-      <span>{author.name}</span>
+      <span>{author}</span>
       <style jsx>
         {`
           span {

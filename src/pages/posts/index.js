@@ -1,4 +1,5 @@
 import { GetStaticProps } from "next";
+import React from 'react'
 import Layout from "../../components/Layout";
 import BasicMeta from "../../components/meta/BasicMeta";
 import OpenGraphMeta from "../../components/meta/OpenGraphMeta";
@@ -10,7 +11,7 @@ import Head from "next/head";
 import axios from "axios";
 
 
-export default function Index({ posts, tags, pagination }) {
+export default function Index({ posts, tags}) {
   const url = "/posts";
   const title = "All posts";
 
@@ -19,30 +20,20 @@ export default function Index({ posts, tags, pagination }) {
       <BasicMeta url={url} title={title} />
       <OpenGraphMeta url={url} title={title} />
       <TwitterCardMeta url={url} title={title} />
-
-
-      <PostList posts={posts} tags={tags} pagination={pagination} />
+      <PostList posts={posts} tags={tags}/>
     </Layout>
   );
 }
 
 export async function getStaticProps() {
-  //const posts = listPostContent(1, config.posts_per_page);
-  //const tags = listTags();
-
   const posts = (await axios.get('http://localhost:8000/api/post/')).data
   const tags = (await axios.get('http://localhost:8000/api/post/tag/')).data
-
-  const pagination = {
-    current: 1,
-    pages: Math.ceil(posts.length / config.posts_per_page),
-  };
 
   return {
     props: {
       posts,
       tags,
-      pagination,
     },
+    revalidate: 60*60
   };
 };

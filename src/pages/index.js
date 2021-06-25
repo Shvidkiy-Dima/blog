@@ -15,22 +15,32 @@ export default function Index() {
       <div className="container">
         <div>
           <h1>
-            Hi, We're Next.js & Netlify<span className="fancy">.</span>
+           Hi, i'm a Django & React Developer<span className="fancy">.</span>
           </h1>
-          <span className="handle">@nextjs-netlify-blog</span>
-          <h2>A blog template with Next.js and Netlify.</h2>
+          <span className="handle">@and litteraly a nice guy</span>
+          <h2>Welcome to my dojo, samurai!</h2>
+
+          <h3>
+            Full Stack developer from Russia. Since beginning my journey as a programmer nearly 5 years ago,
+            i've done work for institutions, agencies, startups, create several self projects. 
+            I collaborated with very talented people to create digital products for business and consumers.
+            I'm confident, naturally curious, can solve business problems and perpetually working
+                on improving my skills.
+                </h3>
           <SocialList />
         </div>
       </div>
 
       <style jsx>{`
-        .container {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          flex: 1 1 auto;
-          padding: 0 1.5rem;
-        }
+      .container {
+              display: block;
+              max-width: 50rem;
+              width: 100%;
+              margin: 0 auto;
+              padding: 0 1.5rem;
+              box-sizing: border-box;
+              z-index: 0;
+            }
         h1 {
           font-size: 2.5rem;
           margin: 0;
@@ -40,6 +50,11 @@ export default function Index() {
           font-size: 1.75rem;
           font-weight: 400;
           line-height: 1.25;
+        }
+        h3 {
+          font-weight: 400;
+          line-height: 1.6;
+          font-size: 1rem;
         }
         .fancy {
           color: #15847d;
@@ -57,6 +72,9 @@ export default function Index() {
           }
           h2 {
             font-size: 2.25rem;
+          }
+          h3 {
+            font-size: 1.2rem;
           }
         }
       `}</style>

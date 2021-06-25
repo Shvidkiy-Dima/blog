@@ -1,7 +1,7 @@
 from django.db import models
 from django.utils.text import slugify
 from utils.models import BaseModel
-from ckeditor_uploader.fields import RichTextUploadingField
+from martor.models import MartorField
 
 
 class WorkQuerySet(models.QuerySet):
@@ -13,10 +13,12 @@ class WorkQuerySet(models.QuerySet):
 class Work(BaseModel):
     title = models.CharField(max_length=256, unique=True, db_index=True)
     preview = models.ImageField(upload_to='preview/')
-    slug = models.SlugField(blank=True, unique=True, db_index=True)
+    slug = models.SlugField(blank=True, unique=True, db_index=True, editable=False)
     is_active = models.BooleanField(default=True)
-    content = RichTextUploadingField()
-    link = models.URLField()
+    content = MartorField()
+    description = models.TextField()
+    link = models.URLField(null=True, blank=True, default=None)
+    git_link = models.URLField(null=True, blank=True, default=None)
 
     objects = WorkQuerySet.as_manager()
 

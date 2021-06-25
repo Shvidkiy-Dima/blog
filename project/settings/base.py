@@ -48,6 +48,8 @@ INSTALLED_APPS = [
     'post.apps.PostConfig',
     'comment.apps.CommentConfig',
     'work.apps.WorkConfig',
+    'account.apps.AccountConfig',
+    'snippets.apps.SnippetsConfig',
 
     'colorfield',
     'ckeditor',
@@ -55,6 +57,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'rest_framework',
     'rest_framework.authtoken',
+    'django_filters',
 
     'martor',
 ]
@@ -124,6 +127,8 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
+AUTH_USER_MODEL = 'account.User'
+
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
 
@@ -150,8 +155,13 @@ MEDIA_URL = '/media/'
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework.authentication.TokenAuthentication',
+        'account.authentication.IPAuthentication',
     ),
+    'DEFAULT_FILTER_BACKENDS': (
+        'django_filters.rest_framework.DjangoFilterBackend',
+    ),
+    'DEFAULT_PAGINATION_CLASS': 'utils.pagination.CustomPagination',
+    'PAGE_SIZE': 15,
 }
 REST_DATE_FORMAT = '%m-%d-%Y'
 REST_DATETIME_FORMAT = '%m-%d-%Y %H:%M:%S'
@@ -189,3 +199,5 @@ MARTOR_MARKDOWN_EXTENSIONS = [
     'martor.extensions.mdx_video',    # to parse embed/iframe video
     'martor.extensions.escape_html',  # to handle the XSS vulnerabilities
 ]
+
+MARTOR_ENABLE_LABEL = True

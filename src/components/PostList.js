@@ -1,29 +1,12 @@
 import React from "react";
-import PostItem from "./PostItem";
+import PostListItems from './PostListItems'
 import TagLink from "./TagLink";
-import Pagination from "./Pagination";
 
 
-export default function PostList({ posts, tags, pagination }) {
+export default function PostList({ posts, tags}) {
   return (
     <div className={"container"}>
-      <div className={"posts"}>
-        <ul className={"post-list"}>
-          {posts.map((it, i) => (
-            <li key={i}>
-              <PostItem post={it} />
-            </li>
-          ))}
-        </ul>
-        <Pagination
-          current={pagination.current}
-          pages={pagination.pages}
-          link={{
-            href: (page) => (page === 1 ? "/posts" : "/posts/page/[page]"),
-            as: (page) => (page === 1 ? null : "/posts/page/" + page),
-          }}
-        />
-      </div>
+      <PostListItems posts={posts} />
       <ul className={"categories"}>
         {tags.map((it, i) => (
           <li key={i}>
@@ -45,17 +28,6 @@ export default function PostList({ posts, tags, pagination }) {
         }
         li {
           list-style: none;
-        }
-        .posts {
-          display: flex;
-          flex-direction: column;
-          flex: 1 1 auto;
-        }
-        .posts li {
-          margin-bottom: 1.5rem;
-        }
-        .post-list {
-          flex: 1 0 auto;
         }
         .categories {
           display: none;
