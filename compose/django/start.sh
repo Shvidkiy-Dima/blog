@@ -11,7 +11,7 @@ try:
     psycopg2.connect(
         dbname="${POSTGRES_DB}",
         user="${POSTGRES_USER}",
-        password="${POSTGRES_PASSWORD}",
+        password="${POSTGRES_PASS}",
         host="${POSTGRES_HOST}",
         port="${POSTGRES_PORT}",
     )
