@@ -1,6 +1,5 @@
 from django.core.management.base import BaseCommand
 from django.contrib.auth import get_user_model
-from account.models import UserConfig, ClientProfile
 
 import os
 
@@ -19,8 +18,6 @@ class Command(BaseCommand):
         USER = get_user_model()
         if not USER.objects.filter(username=name).exists():
             u = USER.objects.create_superuser(username=name, password=password, email=email)
-            UserConfig.objects.create(user=u)
-            ClientProfile.objects.create(user=u)
             self.stdout.write('SUPERUSER CREATE!')
         else:
             self.stderr.write('SUPERUSER ALREADY EXISTS!')
