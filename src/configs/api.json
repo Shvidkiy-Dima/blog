@@ -1,0 +1,5 @@
+
+{
+    "base_url_": "http://localhost:8000",
+    "base_url": "http://django:5000"
+}

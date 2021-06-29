@@ -33,7 +33,8 @@ class PostDetailSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Post
         fields = ('title', 'slug', 'tags', 'content', 'id',
-                  'created', 'headers', 'min_reading_time')
+                  'created', 'headers', 'min_reading_time',
+                  'seo_title', 'seo_description', 'seo_keywords')
 
 
 class PostInfoSerializer(serializers.ModelSerializer):

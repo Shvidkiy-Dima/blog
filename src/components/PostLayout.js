@@ -1,6 +1,5 @@
 import React from "react";
 import styles from "../styles/content.module.css";
-import Author from "./Author";
 import Copyright from "./Copyright";
 import Date from "./Date";
 import Layout from "./Layout";
@@ -12,9 +11,7 @@ import TwitterCardMeta from "./meta/TwitterCardMeta";
 import { SocialList } from "./SocialList";
 import TagButton from "./TagButton";
 import Like from './Like'
-
-//import { getAuthor } from "../lib/authors";
-// import { getTag } from "../lib/tags";
+import config from '../configs/main.json'
 
 
 export default function PostLayout({
@@ -23,14 +20,15 @@ export default function PostLayout({
   slug,
   author,
   tags,
-  description = "",
   headers,
+  seo,
   children,
 }) {
   // const keywords = tags.map(it => getTag(it).name);
-  const authorName = "BOtis"
-  let keywords = ['1']
-
+  const authorName = config.author
+  let keywords = seo.keywords
+  let description = seo.description
+  
   return (
     <Layout>
       <BasicMeta

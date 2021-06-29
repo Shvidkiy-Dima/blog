@@ -1,6 +1,11 @@
 import React from "react";
 import Layout from "../../components/Layout";
 import axios from "axios";
+import config from '../../configs/api.json'
+import BasicMeta from "../../components/meta/BasicMeta";
+import OpenGraphMeta from "../../components/meta/OpenGraphMeta";
+import TwitterCardMeta from "../../components/meta/TwitterCardMeta";
+
 
 export default function Index({ works }) {
   const url = "/works";
@@ -8,6 +13,9 @@ export default function Index({ works }) {
 
   return (
     <Layout>
+      <BasicMeta url={url} title={title} />
+      <OpenGraphMeta url={url} title={title} />
+      <TwitterCardMeta url={url} title={title} />
       <div className={"container"}>
         <div className={"posts"}>
           <ul>
@@ -72,7 +80,7 @@ export default function Index({ works }) {
 }
 
 export async function getStaticProps() {
-  const works = (await axios.get("http://localhost:8000/api/work/")).data;
+  const works = (await axios.get(`${config.base_url}/api/work/`)).data;
   return {
     props: {
       works,

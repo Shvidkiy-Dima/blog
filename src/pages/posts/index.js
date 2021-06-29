@@ -5,7 +5,7 @@ import BasicMeta from "../../components/meta/BasicMeta";
 import OpenGraphMeta from "../../components/meta/OpenGraphMeta";
 import TwitterCardMeta from "../../components/meta/TwitterCardMeta";
 import PostList from "../../components/PostList";
-import config from "../../configs/main";
+import config from "../../configs/api.json";
 // import { listTags, TagContent } from "../../lib/tags";
 import Head from "next/head";
 import axios from "axios";
@@ -26,8 +26,8 @@ export default function Index({ posts, tags}) {
 }
 
 export async function getStaticProps() {
-  const posts = (await axios.get('http://localhost:8000/api/post/')).data
-  const tags = (await axios.get('http://localhost:8000/api/post/tag/')).data
+  const posts = (await axios.get(`${config.base_url}/api/post/`)).data
+  const tags = (await axios.get(`${config.base_url}/api/post/tag/`)).data
 
   return {
     props: {

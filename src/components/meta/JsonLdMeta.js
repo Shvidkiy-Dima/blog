@@ -14,15 +14,16 @@ export default function JsonLdMeta({
   image,
   description,
 }) {
+
   return (
     <Head>
       <script
-        {...jsonLdScriptProps<BlogPosting>({
+        {...jsonLdScriptProps({
           "@context": "https://schema.org",
           "@type": "BlogPosting",
           mainEntityOfPage: config.base_url + url,
           headline: title,
-          keywords: keywords ? undefined : keywords.join(","),
+          keywords: keywords ? keywords.join(",") : undefined,
           datePublished: formatISO(date),
           author: author,
           image: image,

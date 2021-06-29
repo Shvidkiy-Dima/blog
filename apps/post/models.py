@@ -2,7 +2,7 @@ import re
 from datetime import timedelta
 from django.db import models
 from django.utils.text import slugify
-from utils.models import BaseModel
+from utils.models import BaseModel, SeoMixin
 from colorfield.fields import ColorField
 from martor.models import MartorField
 
@@ -13,7 +13,7 @@ class PostQuerySet(models.QuerySet):
         return self.filter(is_active=True)
 
 
-class Post(BaseModel):
+class Post(SeoMixin, BaseModel):
     title = models.CharField(max_length=256, unique=True, db_index=True)
     slug = models.SlugField(blank=True, unique=True, db_index=True, editable=False)
     is_active = models.BooleanField(default=True)

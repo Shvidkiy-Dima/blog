@@ -17,8 +17,8 @@ export default function Index() {
           <h1>
            Hi, i'm a Django & React Developer<span className="fancy">.</span>
           </h1>
-          <span className="handle">@and litteraly a nice guy</span>
-          <h2>Welcome to my dojo, samurai!</h2>
+          <span className="handle">@Dima Borisov</span>
+          <h2>Welcome to my blog!</h2>
 
           <h3>
             Full Stack developer from Russia. Since beginning my journey as a programmer nearly 5 years ago,
