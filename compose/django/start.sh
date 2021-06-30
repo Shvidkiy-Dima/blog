@@ -1,6 +1,10 @@
 #!/bin/bash
 
 
+echo "postgres://${POSTGRES_USER}:${POSTGRES_PASS}@${POSTGRES_HOST}:${POSTGRES_PORT}/${POSTGRES_DB}"
+echo "postgres://${DB_USERNAME}:${DB_PASSWORD}@${DB_HOSTNAME}:${DB_PORT}/${DB_NAME}"
+
+
 postgres_ready() {
 python << END
 import sys
