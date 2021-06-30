@@ -5,11 +5,12 @@ import PostLayout from "../../components/PostLayout";
 import { serialize } from 'next-mdx-remote/serialize'
 import { MDXRemote } from 'next-mdx-remote'
 import a11yEmoji from '@fec/remark-a11y-emoji';
+import highlight from 'remark-highlight.js'
 import emoji from 'remark-emoji';
 import axios from "axios";
 import matter from 'gray-matter'
 import config from '../../configs/api.json'
-
+import "highlight.js/styles/github.css" 
 
 export default function Post({
   title,
@@ -66,7 +67,7 @@ export async function getStaticProps ({ params }) {
     const mdxSource = await serialize(content, 
       { scope: data,
         mdxOptions: {
-          remarkPlugins: [[a11yEmoji, {}], [emoji, {}]],
+          remarkPlugins: [[a11yEmoji, {}], [emoji, {}], [highlight, {}]],
         },
     })
 
