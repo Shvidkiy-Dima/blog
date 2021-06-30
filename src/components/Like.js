@@ -20,14 +20,14 @@ const [LikeCounter, setLikeCounter] = React.useState(null)
 const [Index, setIndex] = useState(0)
 
 React.useEffect(async ()=>{
-      let data = (await axios.get(`${config.base_url}/api/post/${slug}/info/`)).data
+      let data = (await axios.get(`/api/post/${slug}/info/`)).data
       setLikeCounter(data['summary'])
       setIndex(data['for_user'])
 }, [])
   
 
 async function MakeLike(){
-    let data = (await axios.post(`${config.base_url}/api/post/${slug}/like/`, data={post: slug})).data
+    let data = (await axios.post(`/api/post/${slug}/like/`, data={post: slug})).data
     setLikeCounter(1+LikeCounter)
     setIndex(1+Index)
 }
