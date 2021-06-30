@@ -52,7 +52,7 @@ export default function Navigation() {
             </Link>
           </li>
 
-          <li >
+          {/* <li >
             <Link href="/donate">
               <a
                 className={
@@ -63,7 +63,7 @@ export default function Navigation() {
                 <HiCurrencyDollar/>
               </a>
             </Link>
-          </li>
+          </li> */}
 
         </ul>
         <style jsx>
