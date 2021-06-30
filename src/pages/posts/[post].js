@@ -83,7 +83,7 @@ export async function getStaticProps ({ params }) {
         seo,
         NotFound: false,
       },
-      revalidate: 60*60
+      revalidate: 60
     };
   }
   catch (err) {
