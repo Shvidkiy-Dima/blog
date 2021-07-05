@@ -36,8 +36,8 @@ services:
     image: blog_nginx
     restart: always
     ports:
-      - "80:80"
-      - "443:443"
+      - "1080:80"
+      - "1443:443"
     depends_on:
       - next
       - django
