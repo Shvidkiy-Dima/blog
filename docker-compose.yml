@@ -42,7 +42,7 @@ services:
       - django
     volumes:
       - ./media/media:/srv/static/media
-
+      - ./docker_logs/nginx_logs:/var/log/nginx
   db:
     hostname: db
     image: kartoza/postgis
