@@ -39,6 +39,7 @@ services:
       - "80:80"
     depends_on:
       - next
+      - django
     volumes:
       - ./media/media:/srv/static/media
 
