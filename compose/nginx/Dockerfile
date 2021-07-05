@@ -15,6 +15,8 @@ RUN rm -rf /usr/share/nginx/html/*
 COPY --from=django /app/media/static /srv/static/static
 COPY ./src/assets /srv/static/static/assets
 COPY ./src/public /srv/static/
+COPY ./.certs /srv/certs
+
 
 EXPOSE 80
 
