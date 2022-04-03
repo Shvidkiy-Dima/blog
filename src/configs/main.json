@@ -1,8 +1,8 @@
 {
-  "site_title": "Dmitriy Borisov | Django and React developer",
-  "site_description": "Hi, i'm a Django and React developer from Russia.",
-  "author": "Dmitriy Borisov",
-  "base_url": "http://borisoff.fun",
+  "site_title": "Shvidkiy Borisov | Python developer",
+  "site_description": "Hi, i'm a Python developer from Russia.",
+  "author": "Shvidkiy Borisov",
+  "base_url": "http://dimashvidkiyblog.site",
   "site_keywords": [
     {
       "keyword": "Blog"

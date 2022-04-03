@@ -15,13 +15,13 @@ export default function Index() {
       <div className="container">
         <div>
           <h1>
-           Hi, i'm a Django & React Developer<span className="fancy">.</span>
+           Hi, i'm a Python Developer<span className="fancy">.</span>
           </h1>
           <span className="handle">@Dima Borisov</span>
           <h2>Welcome to my blog!</h2>
 
           <h3>
-            Full Stack developer from Russia. Since beginning my journey as a programmer nearly 5 years ago,
+            Backend developer from Russia. Since beginning my journey as a programmer nearly 5 years ago,
             i've done work for institutions, agencies, startups, create several self projects. 
             I collaborated with very talented people to create digital products for business and consumers.
             I'm confident, naturally curious, can solve business problems and perpetually working
